@@ -1,29 +1,29 @@
 package request
 
 type Intent struct {
-	Name               string          `json:"name"`
-	ConfirmationStatus string          `json:"confirmationStatus"`
-	Slots              map[string]Slot `json:"slots"`
+	Name               string          `json:"name,omitempty"`
+	ConfirmationStatus string          `json:"confirmationStatus,omitempty"`
+	Slots              map[string]Slot `json:"slots,omitempty"`
 }
 
 type Slot struct {
-	Name               string      `json:"name"`
-	Value              string      `json:"value"`
-	ConfirmationStatus string      `json:"confirmationStatus"`
-	Resolutions        Resolutions `json:"resolutions"`
+	Name               string      `json:"name,omitempty"`
+	Value              string      `json:"value,omitempty"`
+	ConfirmationStatus string      `json:"confirmationStatus,omitempty"`
+	Resolutions        Resolutions `json:"resolutions,omitempty"`
 }
 
 type Resolutions struct {
 	ResolutionsPerAuthority []struct {
-		Authority string `json:"authority"`
+		Authority string `json:"authority,omitempty"`
 		Status    struct {
-			Code string `json:"code"`
-		} `json:"status"`
+			Code string `json:"code,omitempty"`
+		} `json:"status,omitempty"`
 		Values []struct {
 			Value struct {
-				Name string `json:"name"`
-				ID   string `json:"id"`
-			} `json:"value"`
-		} `json:"values"`
-	} `json:"resolutionsPerAuthority"`
+				Name string `json:"name,omitempty"`
+				ID   string `json:"id,omitempty"`
+			} `json:"value,omitempty"`
+		} `json:"values,omitempty"`
+	} `json:"resolutionsPerAuthority,omitempty"`
 }

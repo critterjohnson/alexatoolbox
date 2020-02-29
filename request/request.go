@@ -1,58 +1,58 @@
 package request
 
 type Request struct {
-	Version     string      `json:"version"`
-	Session     Session     `json:"session"`
-	Context     Context     `json:"context"`
-	RequestBody RequestBody `json:"request"`
+	Version     string      `json:"version,omitempty"`
+	Session     Session     `json:"session,omitempty"`
+	Context     Context     `json:"context,omitempty"`
+	RequestBody RequestBody `json:"request,omitempty"`
 }
 
 type Session struct {
-	New         bool                   `json:"new"`
-	ID          string                 `json:"sessionId"`
-	Application Application            `json:"application"`
-	Attributes  map[string]interface{} `json:"Attributes"`
-	User        User                   `json:"user"`
+	New         bool                   `json:"new,omitempty"`
+	ID          string                 `json:"sessionId,omitempty"`
+	Application Application            `json:"application,omitempty"`
+	Attributes  map[string]interface{} `json:"Attributes,omitempty"`
+	User        User                   `json:"user,omitempty"`
 }
 
 type Application struct {
-	ID string `json:"applicationId"`
+	ID string `json:"applicationId,omitempty"`
 }
 
 type User struct {
-	ID          string            `json:"userId"`
-	AccessToken string            `json:"accessToken"`
-	Permissions map[string]string `json:"permissions"`
+	ID          string            `json:"userId,omitempty"`
+	AccessToken string            `json:"accessToken,omitempty"`
+	Permissions map[string]string `json:"permissions,omitempty"`
 }
 
 type Context struct {
-	System         System      `json:"System"`
-	Device         Device      `json:"device"`
-	Application    Application `json:"application"`
-	User           User        `json:"user"`
-	Person         Person      `json:"person"`
-	APIEndpoint    string      `json:"apiEndpoint"`
-	APIAccessToken string      `json:"apiAccessToken"`
-	AudioPlayer    AudioPlayer `json:"AudioPlayer"`
+	System         System      `json:"System,omitempty"`
+	Device         Device      `json:"device,omitempty"`
+	Application    Application `json:"application,omitempty"`
+	User           User        `json:"user,omitempty"`
+	Person         Person      `json:"person,omitempty"`
+	APIEndpoint    string      `json:"apiEndpoint,omitempty"`
+	APIAccessToken string      `json:"apiAccessToken,omitempty"`
+	AudioPlayer    AudioPlayer `json:"AudioPlayer,omitempty"`
 }
 
 type System struct {
-	Device Device `json:"device"`
+	Device Device `json:"device,omitempty"`
 }
 
 type Device struct {
-	ID                  string                 `json:"deviceId"`
-	SupportedInterfaces map[string]interface{} `json:"supportedInterfaces"`
+	ID                  string                 `json:"deviceId,omitempty"`
+	SupportedInterfaces map[string]interface{} `json:"supportedInterfaces,omitempty"`
 }
 
 type Person struct {
-	ID          string `json:"personId"`
-	AccessToken string `json:"accessToken"`
+	ID          string `json:"personId,omitempty"`
+	AccessToken string `json:"accessToken,omitempty"`
 }
 
 //! read about AudioPlayer and update this
 type AudioPlayer struct {
-	PlayerActivity       string `json:"playerActivity"`
-	Token                string `json:"token"`
-	OffsetInMilliseconds int    `json:"offsetInMilliseconds"`
+	PlayerActivity       string `json:"playerActivity,omitempty"`
+	Token                string `json:"token,omitempty"`
+	OffsetInMilliseconds int    `json:"offsetInMilliseconds,omitempty"`
 }
