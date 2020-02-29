@@ -1,17 +1,17 @@
 package request
 
 type RequestBody struct {
-	Type      string `json:"type"`
-	RequestID string `json:"requestId"`
-	Timestamp string `json:"timestamp"`
-	Locale    string `json:"locale"`
+	Type      string `json:"type,omitempty"`
+	RequestID string `json:"requestId,omitempty"`
+	Timestamp string `json:"timestamp,omitempty"`
+	Locale    string `json:"locale,omitempty"`
 	// IntentRequest
-	DialogeState string `json:"dialogueState"`
-	Intent       Intent `json:"intent"`
+	DialogeState string `json:"dialogueState,omitempty"`
+	Intent       Intent `json:"intent,omitempty"`
 	// SessionEndedRequest
-	Reason string `json:"reason"`
+	Reason string `json:"reason,omitempty"`
 	Error  struct {
-		Type    string `json:"type"`
-		Message string `json:"message"`
-	} `json:"error"`
+		Type    string `json:"type,omitempty"`
+		Message string `json:"message,omitempty"`
+	} `json:"error,omitempty"`
 }
