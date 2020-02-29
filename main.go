@@ -5,9 +5,16 @@ import (
 	"fmt"
 	"io/ioutil"
 
+	"github.com/critterjohnson/alexatoolbox/handlers"
 	"github.com/critterjohnson/alexatoolbox/request"
 	"github.com/critterjohnson/alexatoolbox/response"
 )
+
+func SonnetHandler(request request.Request) (response.Response, error) {
+	return response.NewBuilder().
+		WithTextOutputSpeech(request.RequestBody.Intent.Slots["SONNET_NUMBER"].Value).
+		Build(), nil
+}
 
 func main() {
 	data, err := ioutil.ReadFile("sonnet138.json")
@@ -21,12 +28,10 @@ func main() {
 		return
 	}
 
-	responseBuilder := response.NewBuilder()
-	response := responseBuilder.
-		WithTextOutputSpeech("hello world").
-		WithSimpleCard("Cool Card", "This card is so cool!").
-		AddAttribute("cool", "beans").
-		Build()
+	requestHandler := handlers.NewRequestHandler()
+	requestHandler.AddIntentRequestHandler("readSonnet", SonnetHandler)
+	response := requestHandler.Handle(request)
+
 	responseJSON, err := json.MarshalIndent(response, "", "    ")
 	if err != nil {
 		fmt.Println("Error marshalling JSON", err)

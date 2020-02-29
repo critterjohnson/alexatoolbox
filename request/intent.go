@@ -20,10 +20,12 @@ type Resolutions struct {
 			Code string `json:"code,omitempty"`
 		} `json:"status,omitempty"`
 		Values []struct {
-			Value struct {
-				Name string `json:"name,omitempty"`
-				ID   string `json:"id,omitempty"`
-			} `json:"value,omitempty"`
+			Value ResolutionValue `json:"value,omitempty"`
 		} `json:"values,omitempty"`
 	} `json:"resolutionsPerAuthority,omitempty"`
+}
+
+type ResolutionValue struct {
+	Name string `json:"name,omitempty"`
+	ID   string `json:"id,omitempty"`
 }
