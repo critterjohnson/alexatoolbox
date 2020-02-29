@@ -1,0 +1,101 @@
+{
+	"version": "1.0",
+	"session": {
+		"new": true,
+		"sessionId": "amzn1.echo-api.session.4cd13f61-9395-4722-8e92-74ffbb54d621",
+		"application": {
+			"applicationId": "amzn1.ask.skill.9c486c8f-8fed-4b5b-a9af-41c070d4a1f2"
+		},
+		"user": {
+			"userId": "amzn1.ask.account.AFTFML44PB7YA6HMLY2EZKYDX2SMOUNMJBK6FKPTYAUGSVFQ7PTHADLOIXJGWNYNBV6QE32S5PFI4IXQO7SPF47HCFU44VQYKIWDMQG6BIRI43Y5O4ZH2SWROJ6D5HL7WWJ4YBUY3Q74WZKHXRUXH5KUWP5FQAVTGG7CCDRHXXO6SWRHLZMABIDT6OZ3KJTYYZQBENKEDLWZPEI"
+		}
+	},
+	"context": {
+		"System": {
+			"application": {
+				"applicationId": "amzn1.ask.skill.9c486c8f-8fed-4b5b-a9af-41c070d4a1f2"
+			},
+			"user": {
+				"userId": "amzn1.ask.account.AFTFML44PB7YA6HMLY2EZKYDX2SMOUNMJBK6FKPTYAUGSVFQ7PTHADLOIXJGWNYNBV6QE32S5PFI4IXQO7SPF47HCFU44VQYKIWDMQG6BIRI43Y5O4ZH2SWROJ6D5HL7WWJ4YBUY3Q74WZKHXRUXH5KUWP5FQAVTGG7CCDRHXXO6SWRHLZMABIDT6OZ3KJTYYZQBENKEDLWZPEI"
+			},
+			"device": {
+				"deviceId": "amzn1.ask.device.AERDA5HRZOG5NPJ57AJA2WPCGBNII4UQS36DAUH4NSZBJ6KD3CC755MZMNW2DGDZATR2FKNNISCOEHQ73THWEGLBWGGKWPZV7ZI2LPTCRHSZHMPRD6ILNNBDBEBLIAB3DYRMOUW4IZ63OTUWYJGK4XODKCMA",
+				"supportedInterfaces": {}
+			},
+			"apiEndpoint": "https://api.amazonalexa.com",
+			"apiAccessToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IjEifQ.eyJhdWQiOiJodHRwczovL2FwaS5hbWF6b25hbGV4YS5jb20iLCJpc3MiOiJBbGV4YVNraWxsS2l0Iiwic3ViIjoiYW16bjEuYXNrLnNraWxsLjljNDg2YzhmLThmZWQtNGI1Yi1hOWFmLTQxYzA3MGQ0YTFmMiIsImV4cCI6MTU4MjkwODIxNiwiaWF0IjoxNTgyOTA3OTE2LCJuYmYiOjE1ODI5MDc5MTYsInByaXZhdGVDbGFpbXMiOnsiY29udGV4dCI6IkFBQUFBQUFBQUFEeWdsN2FpKzNTQ2RJRlhuOVpRVlMzSkFFQUFBQUFBQUFpUllSVHY0QTNmbjlicmVjUzR2aHRTWmp2ZHhvNitXeU4vS0VGU0pPV1VSSVJHZUY3TExnT0F1dkhlRVh1elhEbUl2dmZYamhNcnJ6UWlBaFg3dngwSDFJMHAyNVhzTERvYTlyTXljTUVibkxRQWtzQmNpRzFxMHU3a3JyY1hTN2t5K0s5ZzN4ajFCTEZNMzYwK0EydytQbzJ4Znp1Skg0Y3c1Sm5lZWFweWdacGg2K2pIalg5blhsOEtMcDRZTTBHMSszdCtlY09nZ1NDcnpzZmJEU1hZSldQNEUxcXFZdXF0Q29waktxUFVaOS9SbXNUQmU0ZWhjajZYZmZNT3RLMHNaejVycktqRGZ3dWFXajhEYzUvaVJUZHJKTFRzb0pjWmtoeEFUaVBFdXNvR2YxUXBVa3ZhWWFhTWo3ZVJqUWlyWmVKVXlSaWtnQk94cU1IVmhjaUZ0YTNHaXdIaHpyeWQzc2srckllOThKSWl1VnhMQjlCSEJLOEoyRTc4UENOUzZpdSIsImNvbnNlbnRUb2tlbiI6bnVsbCwiZGV2aWNlSWQiOiJhbXpuMS5hc2suZGV2aWNlLkFFUkRBNUhSWk9HNU5QSjU3QUpBMldQQ0dCTklJNFVRUzM2REFVSDROU1pCSjZLRDNDQzc1NU1aTU5XMkRHRFpBVFIyRktOTklTQ09FSFE3M1RIV0VHTEJXR0dLV1BaVjdaSTJMUFRDUkhTWkhNUFJENklMTk5CREJFQkxJQUIzRFlSTU9VVzRJWjYzT1RVV1lKR0s0WE9ES0NNQSIsInVzZXJJZCI6ImFtem4xLmFzay5hY2NvdW50LkFGVEZNTDQ0UEI3WUE2SE1MWTJFWktZRFgyU01PVU5NSkJLNkZLUFRZQVVHU1ZGUTdQVEhBRExPSVhKR1dOWU5CVjZRRTMyUzVQRkk0SVhRTzdTUEY0N0hDRlU0NFZRWUtJV0RNUUc2QklSSTQzWTVPNFpIMlNXUk9KNkQ1SEw3V1dKNFlCVVkzUTc0V1pLSFhSVVhINUtVV1A1RlFBVlRHRzdDQ0RSSFhYTzZTV1JITFpNQUJJRFQ2T1ozS0pUWVlaUUJFTktFRExXWlBFSSJ9fQ.G6UnTyyMIo7-WQznw0WnAlnXY1YFCcT2nDVEPI4RK2ZTgvZEYx-q4HpgNs10Mny7bP0N5qAr69rK8R7IriINJxN-Lr6KZd0YMTmrpJtEo5WondRMCkfsJOxRBZyT-aLVS6QgDbK0BWwwDq0PDrVrPwBapBkDkrKeA65GqNQG3gGbqnJrIjYT01dNHe5BTlErFgjMYmllJFl56TWkdA-e6QiTLbb33KiwW778tLxVF2XgJ1f867N5wkUyI9lNwDMKm0v3ofcFMtloYSbmhqbIEZNgt67TmXaFTkXZ79TdjMIGv6aJxLiYkaZUo7PXrFDKIFOXY1z_ci39q0COkM72lg"
+		},
+		"Viewport": {
+			"experiences": [
+				{
+					"arcMinuteWidth": 246,
+					"arcMinuteHeight": 144,
+					"canRotate": false,
+					"canResize": false
+				}
+			],
+			"shape": "RECTANGLE",
+			"pixelWidth": 1024,
+			"pixelHeight": 600,
+			"dpi": 160,
+			"currentPixelWidth": 1024,
+			"currentPixelHeight": 600,
+			"touch": [
+				"SINGLE"
+			],
+			"video": {
+				"codecs": [
+					"H_264_42",
+					"H_264_41"
+				]
+			}
+		},
+		"Viewports": [
+			{
+				"type": "APL",
+				"id": "main",
+				"shape": "RECTANGLE",
+				"dpi": 160,
+				"presentationType": "STANDARD",
+				"canRotate": false,
+				"configuration": {
+					"current": {
+						"video": {
+							"codecs": [
+								"H_264_42",
+								"H_264_41"
+							]
+						},
+						"size": {
+							"type": "DISCRETE",
+							"pixelWidth": 1024,
+							"pixelHeight": 600
+						}
+					}
+				}
+			}
+		]
+	},
+	"request": {
+		"type": "IntentRequest",
+		"requestId": "amzn1.echo-api.request.2854b0c5-73e1-4d10-9637-e1526baa8ef2",
+		"timestamp": "2020-02-28T16:38:36Z",
+		"locale": "en-US",
+		"intent": {
+			"name": "readSonnet",
+			"confirmationStatus": "NONE",
+			"slots": {
+				"SONNET_NUMBER": {
+					"name": "SONNET_NUMBER",
+					"value": "138",
+					"confirmationStatus": "NONE",
+					"source": "USER"
+				},
+				"LINE_NUMBER": {
+					"name": "LINE_NUMBER",
+					"confirmationStatus": "NONE"
+				}
+			}
+		}
+	}
+}
