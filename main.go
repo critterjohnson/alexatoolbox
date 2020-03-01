@@ -18,8 +18,8 @@ func SayHello(request request.Request) (response.Response, error) {
 func LambdaHandler(ctx context.Context, request request.Request) (response.Response, error) {
 	requestHandler := handlers.NewRequestHandler()
 	requestHandler.AddIntentRequestHandler("SayHello", SayHello)
-	response := requestHandler.Handle(request)
-	return response, nil
+	response, err := requestHandler.Handle(request)
+	return response, err
 }
 
 func main() {

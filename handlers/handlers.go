@@ -10,7 +10,7 @@ type RequestHandler struct {
 	launchRequestHandler       func(request.Request) (response.Response, error)
 	intentRequestHandlers      map[string]func(request.Request) (response.Response, error)
 	sessionEndedRequestHandler func(request.Request) error
-	errorHandler               func(request.Request, error) response.Response
+	errorHandler               func(request.Request, error) (response.Response, error)
 }
 
 // NewRequestHandler returns a new request handler.
@@ -21,7 +21,7 @@ func NewRequestHandler() *RequestHandler {
 }
 
 // Handle handles an incoming request by calling the user-defined handlers.
-func (r *RequestHandler) Handle(request request.Request) response.Response {
+func (r *RequestHandler) Handle(request request.Request) (response.Response, error) {
 	var response response.Response
 	var err error
 
@@ -36,7 +36,7 @@ func (r *RequestHandler) Handle(request request.Request) response.Response {
 	if err != nil && r.errorHandler != nil {
 		return r.errorHandler(request, err)
 	}
-	return response
+	return response, err
 }
 
 // AddLaunchRequestHandler sets the launch request handler funtion.
