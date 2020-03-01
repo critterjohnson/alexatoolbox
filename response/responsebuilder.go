@@ -4,9 +4,9 @@ package response
 type Builder struct {
 	response          Response
 	sessionAttributes map[string]interface{}
-	outputSpeech      OutputSpeech
-	card              Card
-	reprompt          Reprompt
+	outputSpeech      *OutputSpeech  // using pointers so unused structs don't get marshalled.
+	card              *Card
+	reprompt          *Reprompt
 	directives        []interface{}
 	shouldEndSession  bool
 }
@@ -41,13 +41,13 @@ func (b *Builder) AddAttributes(attributes map[string]interface{}) *Builder {
 
 // WithOutputSpeech sets the OutputSpeech object of the builder to the given OutputSpeech object.
 func (b *Builder) WithOutputSpeech(outputSpeech OutputSpeech) *Builder {
-	b.outputSpeech = outputSpeech
+	b.outputSpeech = &outputSpeech
 	return b
 }
 
 // WithTextOutputSpeech sets the OutputSpeech type to "PlainText" and sets the text.
 func (b *Builder) WithTextOutputSpeech(text string) *Builder {
-	b.outputSpeech = OutputSpeech{
+	b.outputSpeech = &OutputSpeech{
 		Type: "PlainText",
 		Text: text,
 	}
@@ -56,7 +56,7 @@ func (b *Builder) WithTextOutputSpeech(text string) *Builder {
 
 // WithSsmlOutputSpeech sets the OutputSpeech type to "ssml" and sets the ssml encoded string.
 func (b *Builder) WithSsmlOutputSpeech(ssml string) *Builder {
-	b.outputSpeech = OutputSpeech{
+	b.outputSpeech = &OutputSpeech{
 		Type: "ssml",
 		Ssml: ssml, //TODO: Create an ssml builder
 	}
@@ -71,13 +71,13 @@ func (b *Builder) OutputSpeechPlayBehavior(behavior string) *Builder {
 
 // WithCard sets the Card object of the builder to the given Card object.
 func (b *Builder) WithCard(card Card) *Builder {
-	b.card = card
+	b.card = &card
 	return b
 }
 
 // WithSimpleCard creates a simple card.
 func (b *Builder) WithSimpleCard(title string, content string) *Builder {
-	b.card = Card{
+	b.card = &Card{
 		Type:    "Simple",
 		Title:   title,
 		Content: content,
@@ -87,24 +87,24 @@ func (b *Builder) WithSimpleCard(title string, content string) *Builder {
 
 // WithStandardCard creates a standard card.
 func (b *Builder) WithStandardCard(title string, text string, image Image) *Builder {
-	b.card = Card{
+	b.card = &Card{
 		Title: title,
 		Text:  text,
-		Image: image,
+		Image: &image,
 	}
 	return b
 }
 
 // WithReprompt sets the reprompt object of the builder to the given reprompt object.
 func (b *Builder) WithReprompt(reprompt Reprompt) *Builder {
-	b.reprompt = reprompt
+	b.reprompt = &reprompt
 	return b
 }
 
 // WithTextReprompt creates the reprompt object with a "PlainText" type OutputSpeech.
 func (b *Builder) WithTextReprompt(text string) *Builder {
-	b.reprompt = Reprompt{
-		OutputSpeech: OutputSpeech{
+	b.reprompt = &Reprompt{
+		OutputSpeech: &OutputSpeech{
 			Type: "PlainText",
 			Text: text,
 		},
@@ -114,8 +114,8 @@ func (b *Builder) WithTextReprompt(text string) *Builder {
 
 // WithSsmlReprompt creates the reprompt object with a "ssml" type OutputSpeech.
 func (b *Builder) WithSsmlReprompt(ssml string) *Builder {
-	b.reprompt = Reprompt{
-		OutputSpeech: OutputSpeech{
+	b.reprompt = &Reprompt{
+		OutputSpeech: &OutputSpeech{
 			Type: "ssml",
 			Ssml: ssml,
 		},
@@ -146,7 +146,7 @@ func (b *Builder) Build() Response {
 	return Response{
 		Version:           "1.0",
 		SessionAttributes: b.sessionAttributes,
-		Response: ResponseBody{
+		Response: &ResponseBody{
 			OutputSpeech:     b.outputSpeech,
 			Card:             b.card,
 			Reprompt:         b.reprompt,
