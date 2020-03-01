@@ -1,8 +1,8 @@
 package handlers
 
 import (
-	"github.com/critterjohnson/alexatoolbox/request"
-	"github.com/critterjohnson/alexatoolbox/response"
+	"github.com/critterjohnson/go-ask/request"
+	"github.com/critterjohnson/go-ask/response"
 )
 
 // RequestHandler handles incoming requests and sends them to user-defined handlers.
@@ -18,6 +18,30 @@ func NewRequestHandler() *RequestHandler {
 	return &RequestHandler{
 		intentRequestHandlers: make(map[string]func(request.Request) (response.Response, error)),
 	}
+}
+
+// AddLaunchRequestHandler sets the launch request handler funtion.
+func (r *RequestHandler) AddLaunchRequestHandler(handler func(request.Request) (response.Response, error)) *RequestHandler {
+	r.launchRequestHandler = handler
+	return r
+}
+
+// AddIntentRequestHandler sets the intent request handler function for the given intent.
+func (r *RequestHandler) AddIntentRequestHandler(intentName string, handler func(request.Request) (response.Response, error)) *RequestHandler {
+	r.intentRequestHandlers[intentName] = handler
+	return r
+}
+
+// AddSessionEndedRequestHandler sets the session ended request handler funtion.
+func (r *RequestHandler) AddSessionEndedRequestHandler(handler func(request.Request) error) *RequestHandler {
+	r.sessionEndedRequestHandler = handler
+	return r
+}
+
+// AddErrorHandler adds a function to be called if an error occurs. Useful for logging.
+func (r *RequestHandler) AddErrorHandler(handler func(request.Request, error) (response.Response, error)) *RequestHandler {
+	r.errorHandler = handler
+	return r
 }
 
 // Handle handles an incoming request by calling the user-defined handlers.
@@ -37,22 +61,4 @@ func (r *RequestHandler) Handle(request request.Request) (response.Response, err
 		return r.errorHandler(request, err)
 	}
 	return response, err
-}
-
-// AddLaunchRequestHandler sets the launch request handler funtion.
-func (r *RequestHandler) AddLaunchRequestHandler(handler func(request.Request) (response.Response, error)) *RequestHandler {
-	r.launchRequestHandler = handler
-	return r
-}
-
-// AddIntentRequestHandler sets the intent request handler function for the given intent.
-func (r *RequestHandler) AddIntentRequestHandler(intentName string, handler func(request.Request) (response.Response, error)) *RequestHandler {
-	r.intentRequestHandlers[intentName] = handler
-	return r
-}
-
-// AddSessionEndedRequestHandler sets the session ended request handler funtion.
-func (r *RequestHandler) AddSessionEndedRequestHandler(handler func(request.Request) error) *RequestHandler {
-	r.sessionEndedRequestHandler = handler
-	return r
 }
