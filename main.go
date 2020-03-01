@@ -1,41 +1,27 @@
 package main
 
 import (
-	"encoding/json"
-	"fmt"
-	"io/ioutil"
+	"context"
 
+	"github.com/aws/aws-lambda-go/lambda"
 	"github.com/critterjohnson/alexatoolbox/handlers"
 	"github.com/critterjohnson/alexatoolbox/request"
 	"github.com/critterjohnson/alexatoolbox/response"
 )
 
-func SonnetHandler(request request.Request) (response.Response, error) {
+func SayHello(request request.Request) (response.Response, error) {
 	return response.NewBuilder().
-		WithTextOutputSpeech(request.RequestBody.Intent.Slots["SONNET_NUMBER"].Value).
+		WithTextOutputSpeech("hello, " + request.RequestBody.Intent.Slots["name"].Value).
 		Build(), nil
 }
 
-func main() {
-	data, err := ioutil.ReadFile("sonnet138.json")
-	if err != nil {
-		fmt.Println("Error reading file", err)
-		return
-	}
-	request := request.Request{}
-	if err = json.Unmarshal(data, &request); err != nil {
-		fmt.Println("Error unmarshalling JSON", err)
-		return
-	}
-
+func LambdaHandler(ctx context.Context, request request.Request) (response.Response, error) {
 	requestHandler := handlers.NewRequestHandler()
-	requestHandler.AddIntentRequestHandler("readSonnet", SonnetHandler)
+	requestHandler.AddIntentRequestHandler("SayHello", SayHello)
 	response := requestHandler.Handle(request)
+	return response, nil
+}
 
-	responseJSON, err := json.MarshalIndent(response, "", "    ")
-	if err != nil {
-		fmt.Println("Error marshalling JSON", err)
-		return
-	}
-	fmt.Println(string(responseJSON))
+func main() {
+	lambda.Start(LambdaHandler)
 }
