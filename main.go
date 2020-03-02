@@ -4,9 +4,9 @@ import (
 	"context"
 
 	"github.com/aws/aws-lambda-go/lambda"
-	"github.com/critterjohnson/alexatoolbox/handlers"
-	"github.com/critterjohnson/alexatoolbox/request"
-	"github.com/critterjohnson/alexatoolbox/response"
+	"github.com/critterjohnson/go-ask/handlers"
+	"github.com/critterjohnson/go-ask/request"
+	"github.com/critterjohnson/go-ask/response"
 )
 
 func SayHello(request request.Request) (response.Response, error) {

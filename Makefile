@@ -11,3 +11,6 @@ package:
 upload:
 	@echo "uploading..."
 	aws lambda update-function-code --function-name goask_test --zip-file fileb://main.zip
+
+test:
+	go test ./... -v

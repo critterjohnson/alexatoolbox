@@ -4,16 +4,18 @@ package response
 type Builder struct {
 	response          Response
 	sessionAttributes map[string]interface{}
-	outputSpeech      *OutputSpeech  // using pointers so unused structs don't get marshalled.
+	outputSpeech      *OutputSpeech // using pointers so unused structs don't get marshalled.
 	card              *Card
 	reprompt          *Reprompt
 	directives        []interface{}
 	shouldEndSession  bool
 }
 
+// NewBuilder returns a new builder object.
 func NewBuilder() *Builder {
 	return &Builder{
 		sessionAttributes: make(map[string]interface{}),
+		shouldEndSession:  true,
 	}
 }
 
@@ -47,24 +49,29 @@ func (b *Builder) WithOutputSpeech(outputSpeech OutputSpeech) *Builder {
 
 // WithTextOutputSpeech sets the OutputSpeech type to "PlainText" and sets the text.
 func (b *Builder) WithTextOutputSpeech(text string) *Builder {
-	b.outputSpeech = &OutputSpeech{
-		Type: "PlainText",
-		Text: text,
+	if b.outputSpeech == nil {
+		b.outputSpeech = &OutputSpeech{}
 	}
+	b.outputSpeech.Type = "PlainText"
+	b.outputSpeech.Text = text
 	return b
 }
 
 // WithSsmlOutputSpeech sets the OutputSpeech type to "ssml" and sets the ssml encoded string.
 func (b *Builder) WithSsmlOutputSpeech(ssml string) *Builder {
-	b.outputSpeech = &OutputSpeech{
-		Type: "ssml",
-		Ssml: ssml, //TODO: Create an ssml builder
+	if b.outputSpeech == nil {
+		b.outputSpeech = &OutputSpeech{}
 	}
+	b.outputSpeech.Type = "ssml"
+	b.outputSpeech.Ssml = ssml
 	return b
 }
 
 // OutputSpeechPlayBehavior sets the play behavior of the output speech.
 func (b *Builder) OutputSpeechPlayBehavior(behavior string) *Builder {
+	if b.outputSpeech == nil {
+		b.outputSpeech = &OutputSpeech{}
+	}
 	b.outputSpeech.PlayBehavior = behavior
 	return b
 }
@@ -103,28 +110,35 @@ func (b *Builder) WithReprompt(reprompt Reprompt) *Builder {
 
 // WithTextReprompt creates the reprompt object with a "PlainText" type OutputSpeech.
 func (b *Builder) WithTextReprompt(text string) *Builder {
-	b.reprompt = &Reprompt{
-		OutputSpeech: &OutputSpeech{
-			Type: "PlainText",
-			Text: text,
-		},
+	if b.reprompt == nil {
+		b.reprompt = &Reprompt{
+			OutputSpeech: &OutputSpeech{},
+		}
 	}
+	b.reprompt.OutputSpeech.Type = "PlainText"
+	b.reprompt.OutputSpeech.Text = text
 	return b
 }
 
 // WithSsmlReprompt creates the reprompt object with a "ssml" type OutputSpeech.
 func (b *Builder) WithSsmlReprompt(ssml string) *Builder {
-	b.reprompt = &Reprompt{
-		OutputSpeech: &OutputSpeech{
-			Type: "ssml",
-			Ssml: ssml,
-		},
+	if b.reprompt == nil {
+		b.reprompt = &Reprompt{
+			OutputSpeech: &OutputSpeech{},
+		}
 	}
+	b.reprompt.OutputSpeech.Type = "ssml"
+	b.reprompt.OutputSpeech.Ssml = ssml
 	return b
 }
 
 // RepromptPlayBehavior sets the play behavior of the reprompt.
 func (b *Builder) RepromptPlayBehavior(behavior string) *Builder {
+	if b.reprompt == nil {
+		b.reprompt = &Reprompt{
+			OutputSpeech: &OutputSpeech{},
+		}
+	}
 	b.reprompt.OutputSpeech.PlayBehavior = behavior
 	return b
 }
