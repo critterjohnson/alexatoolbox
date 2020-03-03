@@ -84,12 +84,12 @@ func TestHandle(t *testing.T) {
 	handle := NewRequestHandler()
 
 	Convey("When Handle is called", t, func() {
-		req := testgen.RandomRequest(t)
+		req := request.RandomRequest(t)
 
 		Convey("on a LaunchRequest", func() {
 			req.RequestBody.Type = "LaunchRequest"
 			e := errors.New(testgen.RandomString())
-			res := testgen.RandomResponse(t)
+			res := response.RandomResponse(t)
 
 			launchReqHandler := func(launchRequest request.Request) (response.Response, error) {
 				Convey("it should pass the request", func() {
@@ -116,7 +116,7 @@ func TestHandle(t *testing.T) {
 			req.RequestBody.Intent.Name = intentName
 
 			e := errors.New(testgen.RandomString())
-			res := testgen.RandomResponse(t)
+			res := response.RandomResponse(t)
 
 			launchReqHandler := func(intentRequest request.Request) (response.Response, error) {
 				Convey("it should pass the request", func() {
@@ -138,7 +138,7 @@ func TestHandle(t *testing.T) {
 		})
 
 		Convey("on a SessionEnded", func() {
-			req.RequestBody.Type = "SessionEnded"
+			req.RequestBody.Type = "SessionEndedRequest"
 			e := errors.New(testgen.RandomString())
 
 			endReqHandler := func(endRequest request.Request) error {
@@ -149,10 +149,10 @@ func TestHandle(t *testing.T) {
 				return e
 			}
 			handle.AddSessionEndedRequestHandler(endReqHandler)
-			response, err := handle.Handle(req)
+			resp, err := handle.Handle(req)
 
 			Convey("it should return an empty response", func() {
-				So(response, ShouldBeEmpty)
+				So(resp, ShouldResemble, response.Response{})
 			})
 
 			Convey("it should return the error", func() {

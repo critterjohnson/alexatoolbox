@@ -3,7 +3,7 @@ package response
 import (
 	"testing"
 
-	. "github.com/critterjohnson/go-ask/testgen"
+	"github.com/critterjohnson/go-ask/testgen"
 	. "github.com/smartystreets/goconvey/convey"
 )
 
@@ -32,7 +32,7 @@ func TestWithAttributes(t *testing.T) {
 		})
 
 		Convey("with a populated map", func() {
-			attributes[RandomString()] = RandomString()
+			attributes[testgen.RandomString()] = testgen.RandomString()
 
 			builder.WithAttributes(attributes)
 
@@ -49,8 +49,8 @@ func TestAddAttribute(t *testing.T) {
 	Convey("When AddAttribute is called", t, func() {
 		attributes := make(map[string]interface{})
 
-		key := RandomString()
-		val := RandomString()
+		key := testgen.RandomString()
+		val := testgen.RandomString()
 		attributes[key] = val
 
 		builder.AddAttribute(key, val)
@@ -75,7 +75,7 @@ func TestAddAttributes(t *testing.T) {
 		})
 
 		Convey("with a populated map", func() {
-			attributes[RandomString()] = RandomString()
+			attributes[testgen.RandomString()] = testgen.RandomString()
 			builder.AddAttributes(attributes)
 
 			Convey("the builder should take on the new attributes", func() {
@@ -100,9 +100,9 @@ func TestWithOutputSpeech(t *testing.T) {
 
 		Convey("with a populated object", func() {
 			outputSpeech := OutputSpeech{
-				Type: RandomString(),
-				Text: RandomString(),
-				Ssml: RandomString(),
+				Type: testgen.RandomString(),
+				Text: testgen.RandomString(),
+				Ssml: testgen.RandomString(),
 			}
 			builder.WithOutputSpeech(outputSpeech)
 
@@ -117,11 +117,11 @@ func TestWithTextOutputSpeech(t *testing.T) {
 	builder := NewBuilder()
 
 	Convey("When WithTextOutputSpeech is called", t, func() {
-		text := RandomString()
+		text := testgen.RandomString()
 		builder.WithTextOutputSpeech(text)
 
 		Convey("and the OutputSpeech object already exists", func() {
-			playBehavior := RandomString()
+			playBehavior := testgen.RandomString()
 			builder.OutputSpeechPlayBehavior(playBehavior)
 
 			Convey("it should not overrite the existing OutputSpeech object", func() {
@@ -147,11 +147,11 @@ func TestWithSsmlOutputSpeech(t *testing.T) {
 	builder := NewBuilder()
 
 	Convey("When WithSsmlOutputSpeech is called", t, func() {
-		text := RandomString()
+		text := testgen.RandomString()
 		builder.WithSsmlOutputSpeech(text)
 
 		Convey("and the OutputSpeech object already exists", func() {
-			playBehavior := RandomString()
+			playBehavior := testgen.RandomString()
 			builder.OutputSpeechPlayBehavior(playBehavior)
 
 			Convey("it should not overrite the existing OutputSpeech object", func() {
@@ -177,13 +177,13 @@ func TestOutputSpeechPlayBehavior(t *testing.T) {
 	builder := NewBuilder()
 
 	Convey("When OutputSpeechPlayBehavior is called", t, func() {
-		behavior := RandomString()
+		behavior := testgen.RandomString()
 
 		Convey("and the OutputSpeech object already exists", func() {
 			outputSpeech := OutputSpeech{
-				Type: RandomString(),
-				Text: RandomString(),
-				Ssml: RandomString(),
+				Type: testgen.RandomString(),
+				Text: testgen.RandomString(),
+				Ssml: testgen.RandomString(),
 			}
 			builder.WithOutputSpeech(outputSpeech)
 			builder.OutputSpeechPlayBehavior(behavior)
@@ -227,8 +227,8 @@ func TestWithCard(t *testing.T) {
 
 		Convey("with a populated object", func() {
 			card := Card{
-				Type: RandomString(),
-				Text: RandomString(),
+				Type: testgen.RandomString(),
+				Text: testgen.RandomString(),
 			}
 			builder.WithCard(card)
 
@@ -257,9 +257,9 @@ func TestWithReprompt(t *testing.T) {
 
 		Convey("with a populated object", func() {
 			outputSpeech := OutputSpeech{
-				Type: RandomString(),
-				Text: RandomString(),
-				Ssml: RandomString(),
+				Type: testgen.RandomString(),
+				Text: testgen.RandomString(),
+				Ssml: testgen.RandomString(),
 			}
 			reprompt := Reprompt{
 				OutputSpeech: &outputSpeech,
@@ -277,11 +277,11 @@ func TestWithTextReprompt(t *testing.T) {
 	builder := NewBuilder()
 
 	Convey("When WithTextReprompt is called", t, func() {
-		text := RandomString()
+		text := testgen.RandomString()
 		builder.WithTextReprompt(text)
 
 		Convey("and the reprompt.OutputSpeech object already exists", func() {
-			playBehavior := RandomString()
+			playBehavior := testgen.RandomString()
 			builder.RepromptPlayBehavior(playBehavior)
 
 			Convey("it should not overrite the existing OutputSpeech object", func() {
@@ -307,11 +307,11 @@ func TestWithSsmlReprompt(t *testing.T) {
 	builder := NewBuilder()
 
 	Convey("When WithSsmlReprompt is called", t, func() {
-		ssml := RandomString()
+		ssml := testgen.RandomString()
 		builder.WithSsmlReprompt(ssml)
 
 		Convey("and the reprompt.OutputSpeech object already exists", func() {
-			playBehavior := RandomString()
+			playBehavior := testgen.RandomString()
 			builder.RepromptPlayBehavior(playBehavior)
 
 			Convey("it should not overrite the existing OutputSpeech object", func() {
@@ -337,13 +337,13 @@ func TestRepromptPlayBehavior(t *testing.T) {
 	builder := NewBuilder()
 
 	Convey("When RepromptPlayBehavior is called", t, func() {
-		behavior := RandomString()
+		behavior := testgen.RandomString()
 
 		Convey("and the Reprompt object already exists", func() {
 			outputSpeech := OutputSpeech{
-				Type: RandomString(),
-				Text: RandomString(),
-				Ssml: RandomString(),
+				Type: testgen.RandomString(),
+				Text: testgen.RandomString(),
+				Ssml: testgen.RandomString(),
 			}
 			reprompt := Reprompt{
 				OutputSpeech: &outputSpeech,
@@ -380,7 +380,7 @@ func TestRepromptPlayBehavior(t *testing.T) {
 func TestWithDirectives(t *testing.T) {
 	Convey("When WithDirectives is called", t, func() {
 		builder := NewBuilder()
-		directives := []interface{}{RandomString(), RandomString(), RandomString()}
+		directives := []interface{}{testgen.RandomString(), testgen.RandomString(), testgen.RandomString()}
 
 		builder.WithDirectives(directives)
 

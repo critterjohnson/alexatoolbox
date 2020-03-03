@@ -31,23 +31,3 @@ func TestRandomStruct(t *testing.T) {
 		})
 	})
 }
-
-func TestRandomRequest(t *testing.T) {
-	Convey("When RandomRequest is called", t, func() {
-		req := RandomRequest(t)
-
-		Convey("It should return a populated Request object", func() {
-			So(req, ShouldNotBeEmpty)
-		})
-	})
-}
-
-func TestRandomResponse(t *testing.T) {
-	Convey("When RandomResponse is called", t, func() {
-		res := RandomResponse(t)
-
-		Convey("It should return a populated Response object", func() {
-			So(res, ShouldNotBeEmpty)
-		})
-	})
-}
