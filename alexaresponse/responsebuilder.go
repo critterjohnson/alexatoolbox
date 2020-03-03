@@ -1,4 +1,4 @@
-package response
+package alexaresponse
 
 // Builder builds Alexa responses.
 type Builder struct {
