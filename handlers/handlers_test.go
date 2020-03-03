@@ -4,8 +4,8 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/critterjohnson/go-ask/request"
-	"github.com/critterjohnson/go-ask/response"
+	request "github.com/critterjohnson/go-ask/alexarequest"
+	response "github.com/critterjohnson/go-ask/alexaresponse"
 	"github.com/critterjohnson/go-ask/testgen"
 	. "github.com/smartystreets/goconvey/convey"
 )

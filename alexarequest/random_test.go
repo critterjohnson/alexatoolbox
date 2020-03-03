@@ -1,4 +1,4 @@
-package request
+package alexarequest
 
 import (
 	"testing"

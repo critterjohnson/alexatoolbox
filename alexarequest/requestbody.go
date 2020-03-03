@@ -1,4 +1,4 @@
-package request
+package alexarequest
 
 // Body represents the body of the Request object.
 type Body struct {

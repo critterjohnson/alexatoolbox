@@ -1,4 +1,4 @@
-package request
+package alexarequest
 
 // Request represents the request sent by Alexa.
 type Request struct {

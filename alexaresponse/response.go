@@ -1,4 +1,4 @@
-package response
+package alexaresponse
 
 // Response represents the response to return from the handler.
 type Response struct {

@@ -1,4 +1,4 @@
-package response
+package alexaresponse
 
 import (
 	"testing"

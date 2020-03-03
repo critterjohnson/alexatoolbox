@@ -1,8 +1,8 @@
 package handlers
 
 import (
-	"github.com/critterjohnson/go-ask/request"
-	"github.com/critterjohnson/go-ask/response"
+	request "github.com/critterjohnson/go-ask/alexarequest"
+	response "github.com/critterjohnson/go-ask/alexaresponse"
 )
 
 // RequestHandler handles incoming requests and sends them to user-defined handlers.
