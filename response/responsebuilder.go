@@ -160,7 +160,7 @@ func (b *Builder) Build() Response {
 	return Response{
 		Version:           "1.0",
 		SessionAttributes: b.sessionAttributes,
-		Response: &ResponseBody{
+		Response: &Body{
 			OutputSpeech:     b.outputSpeech,
 			Card:             b.card,
 			Reprompt:         b.reprompt,
