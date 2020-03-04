@@ -7,5 +7,6 @@ require (
 	github.com/bxcodec/faker/v3 v3.3.0 // indirect
 	github.com/critterjohnson/alexatoolbox v0.0.0-20200301162343-1abe17ff89cd
 	github.com/deciphernow/nautls v0.0.0-20200109200439-1fe2c9b1b5ef
+	github.com/pkg/errors v0.8.1
 	github.com/smartystreets/goconvey v1.6.4
 )

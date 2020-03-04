@@ -18,71 +18,7 @@ func TestNewBuilder(t *testing.T) {
 }
 
 func TestWithAttributes(t *testing.T) {
-	builder := NewBuilder()
 
-	Convey("When WithAttributes is called", t, func() {
-		attributes := make(map[string]interface{})
-
-		Convey("with an empty map", func() {
-			builder.WithAttributes(attributes)
-
-			Convey("the builder should have no attributes", func() {
-				So(builder.sessionAttributes, ShouldBeEmpty)
-			})
-		})
-
-		Convey("with a populated map", func() {
-			attributes[testgen.RandomString()] = testgen.RandomString()
-
-			builder.WithAttributes(attributes)
-
-			Convey("the builder receives the attributes", func() {
-				So(builder.sessionAttributes, ShouldEqual, attributes)
-			})
-		})
-	})
-}
-
-func TestAddAttribute(t *testing.T) {
-	builder := NewBuilder()
-
-	Convey("When AddAttribute is called", t, func() {
-		attributes := make(map[string]interface{})
-
-		key := testgen.RandomString()
-		val := testgen.RandomString()
-		attributes[key] = val
-
-		builder.AddAttribute(key, val)
-		Convey("the attribute should be added", func() {
-			So(builder.sessionAttributes, ShouldResemble, attributes)
-		})
-	})
-}
-
-func TestAddAttributes(t *testing.T) {
-	builder := NewBuilder()
-
-	Convey("When AddAttributes is called", t, func() {
-		attributes := make(map[string]interface{})
-
-		Convey("with an empty map", func() {
-			builder.AddAttributes(attributes)
-
-			Convey("the builder shouldn't gain any attributes", func() {
-				So(builder.sessionAttributes, ShouldBeEmpty)
-			})
-		})
-
-		Convey("with a populated map", func() {
-			attributes[testgen.RandomString()] = testgen.RandomString()
-			builder.AddAttributes(attributes)
-
-			Convey("the builder should take on the new attributes", func() {
-				So(builder.sessionAttributes, ShouldResemble, attributes)
-			})
-		})
-	})
 }
 
 func TestWithOutputSpeech(t *testing.T) {

@@ -3,7 +3,7 @@ package alexaresponse
 // Builder builds Alexa responses.
 type Builder struct {
 	response          Response
-	sessionAttributes map[string]interface{}
+	sessionAttributes interface{}
 	outputSpeech      *OutputSpeech // using pointers so unused structs don't get marshalled.
 	card              *Card
 	reprompt          *Reprompt
@@ -20,24 +20,8 @@ func NewBuilder() *Builder {
 }
 
 // WithAttributes takes an attributes map and sets the attributes, overwriting any existing attributes.
-func (b *Builder) WithAttributes(attributes map[string]interface{}) *Builder {
+func (b *Builder) WithAttributes(attributes interface{}) *Builder {
 	b.sessionAttributes = attributes
-	return b
-}
-
-// AddAttribute adds an attribute to the existing SessionAttributes map given a key and an interface.
-// Adding an attribute to a key that already exist overwrites the attribute.
-func (b *Builder) AddAttribute(key string, attribute interface{}) *Builder {
-	b.sessionAttributes[key] = attribute
-	return b
-}
-
-// AddAttributes adds all of the attributes from the current map into the existing session attributes.
-// Doesn't overwrite the current session attributes unless keys are the same.
-func (b *Builder) AddAttributes(attributes map[string]interface{}) *Builder {
-	for k, v := range attributes {
-		b.sessionAttributes[k] = v
-	}
 	return b
 }
 

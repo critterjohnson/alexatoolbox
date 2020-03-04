@@ -2,9 +2,9 @@ package alexaresponse
 
 // Response represents the response to return from the handler.
 type Response struct {
-	Version           string                 `json:"version,omitempty"`
-	SessionAttributes map[string]interface{} `json:"sessionAttributes,omitempty"`
-	Response          *Body                  `json:"response,omitempty"`
+	Version           string      `json:"version,omitempty"`
+	SessionAttributes interface{} `json:"sessionAttributes,omitempty"`
+	Response          *Body       `json:"response,omitempty"`
 }
 
 // Body represents the body of the response to return from the handlers.
