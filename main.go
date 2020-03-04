@@ -25,6 +25,13 @@ func LambdaHandler(ctx context.Context, request alexarequest.Request) (alexaresp
 }
 
 func main() {
+	var attributes struct {
+		Key  string `json:"key"`
+		Key2 struct {
+			NestKey string `json:"nestKey"`
+		} `json:"key2"`
+	}
+
 	data, err := ioutil.ReadFile("sonnet138.json")
 	if err != nil {
 		fmt.Println("Error reading file", err)
@@ -35,4 +42,13 @@ func main() {
 		fmt.Println("Error unmarshalling JSON", err)
 	}
 	fmt.Printf("%+v", request.Session)
+
+	err = request.Session.UnmarshalAttributes(&attributes)
+	if err != nil {
+		fmt.Println("Error unmarshalling JSON", err)
+	}
+
+	builder := alexaresponse.NewBuilder()
+	response := builder.WithAttributes(attributes).Build()
+	fmt.Printf("%+v", response)
 }

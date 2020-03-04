@@ -2,6 +2,7 @@ package alexarequest
 
 import (
 	"encoding/json"
+	"fmt"
 	"strings"
 
 	"github.com/pkg/errors"
@@ -62,13 +63,14 @@ func extractAttributes(data []byte) []byte {
 			endI = i
 		}
 	}
-	return []byte(str[0:endI])
+	return []byte(str[0 : endI+1])
 }
 
 // UnmarshalAttributes unmarshals the session attributes into an interface.
 // calls json.Unmarshal(data, obj)
-func (r *Request) UnmarshalAttributes(obj interface{}) error {
-	return json.Unmarshal(r.Session.attributeData, obj)
+func (s *Session) UnmarshalAttributes(obj interface{}) error {
+	fmt.Println(string(s.attributeData))
+	return json.Unmarshal(s.attributeData, obj)
 }
 
 // SessionWrapper stores the same info as Session for unmarshalling purposes.
