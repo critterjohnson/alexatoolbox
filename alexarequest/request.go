@@ -1,5 +1,12 @@
 package alexarequest
 
+import (
+	"encoding/json"
+	"strings"
+
+	"github.com/pkg/errors"
+)
+
 // Request represents the request sent by Alexa.
 type Request struct {
 	Version     string  `json:"version,omitempty"`
@@ -10,11 +17,61 @@ type Request struct {
 
 // Session represents the session object.
 type Session struct {
-	New         bool                   `json:"new,omitempty"`
-	ID          string                 `json:"sessionId,omitempty"`
-	Application Application            `json:"application,omitempty"`
-	Attributes  map[string]interface{} `json:"Attributes,omitempty"`
-	User        User                   `json:"user,omitempty"`
+	attributeData []byte
+	New           bool                   `json:"new,omitempty"`
+	ID            string                 `json:"sessionId,omitempty"`
+	Application   Application            `json:"application,omitempty"`
+	Attributes    map[string]interface{} `json:"attributes,omitempty"`
+	User          User                   `json:"user,omitempty"`
+}
+
+// UnmarshalJSON defines the JSON unmarshalling behavior.
+func (s *Session) UnmarshalJSON(data []byte) error {
+	s.attributeData = extractAttributes(data)
+
+	var wrap SessionWrapper
+
+	err := json.Unmarshal(data, &wrap)
+	if err != nil {
+		return errors.Wrap(err, "error unmarshalling Session object")
+	}
+
+	s.New = wrap.New
+	s.ID = wrap.ID
+	s.Application = wrap.Application
+	s.User = wrap.User
+	return nil
+}
+
+func extractAttributes(data []byte) []byte {
+	str := string(data)
+	i := strings.Index(str, "attributes")
+	str = string([]rune(str)[i : len(str)-1])
+	startI := strings.Index(str, "{")
+	str = string([]rune(str)[startI : len(str)-1])
+
+	openCt := 0
+	closeCt := 0
+	endI := 0
+	for i, c := range []rune(str) {
+		if c == '{' {
+			openCt++
+		} else if c == '}' {
+			closeCt++
+		}
+		if closeCt == openCt {
+			endI = i
+		}
+	}
+	return []byte(str[0:endI])
+}
+
+// SessionWrapper stores the same info as Session for unmarshalling purposes.
+type SessionWrapper struct {
+	New         bool        `json:"new,omitempty"`
+	ID          string      `json:"sessionId,omitempty"`
+	Application Application `json:"application,omitempty"`
+	User        User
 }
 
 // Application represents the Application object.
