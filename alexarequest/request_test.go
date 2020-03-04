@@ -45,3 +45,7 @@ func TestExtractAttributes(t *testing.T) {
 		})
 	})
 }
+
+func TestUnmarshalAttributes(t *testing.T) {
+
+}

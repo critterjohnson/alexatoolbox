@@ -18,11 +18,10 @@ type Request struct {
 // Session represents the session object.
 type Session struct {
 	attributeData []byte
-	New           bool                   `json:"new,omitempty"`
-	ID            string                 `json:"sessionId,omitempty"`
-	Application   Application            `json:"application,omitempty"`
-	Attributes    map[string]interface{} `json:"attributes,omitempty"`
-	User          User                   `json:"user,omitempty"`
+	New           bool        `json:"new,omitempty"`
+	ID            string      `json:"sessionId,omitempty"`
+	Application   Application `json:"application,omitempty"`
+	User          User        `json:"user,omitempty"`
 }
 
 // UnmarshalJSON defines the JSON unmarshalling behavior.
@@ -64,6 +63,12 @@ func extractAttributes(data []byte) []byte {
 		}
 	}
 	return []byte(str[0:endI])
+}
+
+// UnmarshalAttributes unmarshals the session attributes into an interface.
+// calls json.Unmarshal(data, obj)
+func (r *Request) UnmarshalAttributes(obj interface{}) error {
+	return json.Unmarshal(r.Session.attributeData, obj)
 }
 
 // SessionWrapper stores the same info as Session for unmarshalling purposes.
