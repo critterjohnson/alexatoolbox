@@ -19,30 +19,43 @@ func trim(str string) string {
 
 func TestExtractAttributes(t *testing.T) {
 	Convey("When TestExtractAttributes is called", t, func() {
-		jsonData := []byte(`{
-			"fakeKey": "fakeVal",
-			"fakeKey2": "fakeVal2",
-			"attributes": {
+		Convey("On an object without attributes", func() {
+			jsonData := []byte(`{
+				"fakeKey": "fakeVal",
+				"fakeKey2": "fakeVal2"
+			}`)
+			data := extractAttributes(jsonData)
+
+			Convey("it should return an empty byte array", func() {
+				So(data, ShouldBeEmpty)
+			})
+		})
+
+		Convey("on an object with attributes", func() {
+			jsonData := []byte(`{
+				"fakeKey": "fakeVal",
+				"fakeKey2": "fakeVal2",
+				"attributes": {
+					"obj1": {
+						"key": "val"
+					},
+					"key": "val"
+				}	
+			}`)
+			attributes := []byte(`{
 				"obj1": {
 					"key": "val"
 				},
 				"key": "val"
-			}	
-		}`)
-		attributes := []byte(`{
-			"obj1": {
-				"key": "val"
-			},
-			"key": "val"
-		}`)
+			}`)
+			data := extractAttributes(jsonData)
 
-		data := extractAttributes(jsonData)
+			Convey("it should return the attributes JSON", func() {
+				trimmedData := trim(string(data))
+				trimmedAttrs := trim(string(attributes))
 
-		Convey("it should return the attributes JSON", func() {
-			trimmedData := trim(string(data))
-			trimmedAttrs := trim(string(attributes))
-
-			So(trimmedData, ShouldEqual, trimmedAttrs)
+				So(trimmedData, ShouldEqual, trimmedAttrs)
+			})
 		})
 	})
 }

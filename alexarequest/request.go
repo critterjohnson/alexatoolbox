@@ -46,6 +46,10 @@ func (s *Session) UnmarshalJSON(data []byte) error {
 func extractAttributes(data []byte) []byte {
 	str := string(data)
 	i := strings.Index(str, "attributes")
+	if i < 0 {
+		return []byte{}
+	}
+
 	str = string([]rune(str)[i : len(str)-1])
 	startI := strings.Index(str, "{")
 	str = string([]rune(str)[startI : len(str)-1])
