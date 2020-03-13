@@ -1,5 +1,6 @@
 bin/
 packages/
+*.zip
 
 # Binaries for programs and plugins
 *.exe
